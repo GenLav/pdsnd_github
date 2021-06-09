@@ -28,7 +28,7 @@ def get_filters():
             print('\n{} it is!\n'.format(city.title()))
             break
 
-    # Get user input for month (all, january, february, ... , june)
+    # TO DO: get user input for month (all, january, february, ... , june)
     while True:
         months = ['january', 'february', 'march', 'april', 'may', 'june','all']
         month = input('Now type a month: January, February, March, April, May, June, or All \n').lower()
@@ -217,20 +217,44 @@ def user_stats(df):
 
     # Display counts of gender
     try:
-        gender_cnts = df['Gender'].value_counts()
-        print('\nHere are the User counts by gender. Note, it does not include null values\n', gender_cnts)
+        gender_counts = df['Gender'].value_counts()
+        print('\nHere are the User counts by gender. Note, it does not include null values\n', gender_counts)
     except:
         print('Sorry, no gender data is available')
+<<<<<<< HEAD
 
 
     # Display earliest, most recent, and most common year of birth
     try:
+||||||| 3afbe2d
+
+
+    # TO DO: Display earliest, most recent, and most common year of birth
+    try:
+=======
+
+
+    # TO DO: Display earliest, most recent, and most common year of birth
+    try:
+>>>>>>> refactoring
         earliest = df['Birth Year'].min().astype(int)
         if earliest < 1900:
+<<<<<<< HEAD
             print('\nThe earliest known Birth Year is', earliest,'But this may be a typing error...')
         else:
             print('\nThe earliest known Birth Year is', earliest)
 
+||||||| 3afbe2d
+            print('\nThe earliest known Birth Year is', earliest,'But this may be a typing error...')
+        else:
+            print('\nThe earliest known Birth Year is', earliest)
+
+=======
+            print('\nThe earliest known user Birth Year is', earliest,'But this may be a typing error...')
+        else:
+            print('\nThe earliest known user Birth Year is', earliest)
+
+>>>>>>> refactoring
         recent = df['Birth Year'].max().astype(int)
         print('\nThe most recent Birth Year is' , recent)
 
