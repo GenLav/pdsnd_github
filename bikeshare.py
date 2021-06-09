@@ -94,6 +94,7 @@ def load_data(city, month, day):
 def raw_data(df):
     """
     Displays first 5 lines of raw data upon user request
+    Displays additions 5 lines upon user request
     """
     # user input to see if they want to see 5 lines of raw data
     view_data = input('\nWould you like to view 5 rows of individual trip data? Enter yes or no\n').lower()
