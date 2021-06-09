@@ -25,10 +25,10 @@ def get_filters():
         city = input('\nWould you like to see the data for Chicago, New York, Washington? \n').lower()
         if city not in cities:
             print('You may have mistyped that. Please try again ')
-        else: 
+        else:
             print('\n{} it is!\n'.format(city.title()))
-            break        
-             
+            break
+
     # TO DO: get user input for month (all, january, february, ... , june)
     while True:
         months = ['january', 'february', 'march', 'april', 'may', 'june','all']
@@ -45,12 +45,12 @@ def get_filters():
         day = input('Which day would you like to see? Sunday, Monday, etc..or type All \n').lower()
         if day in days:
             print('{} then. Lets get the data for you...'.format(day.title()))
-            break 
+            break
         else:
             print('Hmmm, thats odd. Please try again.')
 
     print('-'*40)
-    
+
     return city, month, day
 
 
@@ -66,9 +66,9 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    
+
     df = pd.read_csv(CITY_DATA[city])
-    
+
   # convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
@@ -188,9 +188,9 @@ def trip_duration_stats(df):
     seconds %= 3600
     minutes = seconds // 60
     seconds %= 60
-      
+
     duration =  "%d:%02d:%02d" % (hour, minutes, seconds)
-    
+
     print('The total travel time is ', duration, 'Wow!')
     # TO DO: display mean travel time
     avg_seconds = df['Trip Duration'].mean() % (24 * 3600)
@@ -200,7 +200,7 @@ def trip_duration_stats(df):
     avg_seconds %= 60
     avg_duration =  "%d:%02d:%02d" % (avg_hour, avg_minutes, avg_seconds)
     print('The average travel time is ',avg_duration)
-          
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -219,26 +219,26 @@ def user_stats(df):
     # TO DO: Display counts of gender
     #gender_cnts = df.groupby(['Gender'])['Gender'].count()
     try:
-        gender_cnts = df['Gender'].value_counts()
-        print('\nHere are the User counts by gender. Note, it does not include null values\n', gender_cnts)
+        gender_counts = df['Gender'].value_counts()
+        print('\nHere are the User counts by gender. Note, it does not include null values\n', gender_counts)
     except:
         print('Sorry, no gender data is available')
-   
+
    
     # TO DO: Display earliest, most recent, and most common year of birth
-    try: 
+    try:
         earliest = df['Birth Year'].min().astype(int)
         if earliest < 1900:
             print('\nThe earliest known Birth Year is', earliest,'But this may be a typing error...')
-        else:   
+        else:
             print('\nThe earliest known Birth Year is', earliest)
-            
+
         recent = df['Birth Year'].max().astype(int)
         print('\nThe most recent Birth Year is' , recent)
-        
+
         common_bd = df['Birth Year'].mode()[0].astype(int)
         print('\nThe most common Birth Year is', common_bd)
-        
+
     except:
         print('Sorry, no birth date data is available')
 
@@ -251,13 +251,13 @@ def main():
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
-        
+
         raw_data(df)
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
-        
+
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
