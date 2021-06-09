@@ -224,14 +224,14 @@ def user_stats(df):
     except:
         print('Sorry, no gender data is available')
 
-   
+
     # TO DO: Display earliest, most recent, and most common year of birth
     try:
         earliest = df['Birth Year'].min().astype(int)
         if earliest < 1900:
-            print('\nThe earliest known Birth Year is', earliest,'But this may be a typing error...')
+            print('\nThe earliest known user Birth Year is', earliest,'But this may be a typing error...')
         else:
-            print('\nThe earliest known Birth Year is', earliest)
+            print('\nThe earliest known user Birth Year is', earliest)
 
         recent = df['Birth Year'].max().astype(int)
         print('\nThe most recent Birth Year is' , recent)
