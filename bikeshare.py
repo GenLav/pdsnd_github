@@ -1,5 +1,4 @@
 import time
-#from datetime import datetime
 import pandas as pd
 import numpy as np
 import calendar
@@ -213,12 +212,10 @@ def user_stats(df):
     start_time = time.time()
 
     # Display counts of user types
-    #user_cnts = df.groupby(['User Type'])['User Type'].count()
     user_cnts = df['User Type'].value_counts()
     print('\nHere are the User counts. Note, it does not include null values\n', user_cnts)
 
     # Display counts of gender
-    #gender_cnts = df.groupby(['Gender'])['Gender'].count()
     try:
         gender_cnts = df['Gender'].value_counts()
         print('\nHere are the User counts by gender. Note, it does not include null values\n', gender_cnts)
